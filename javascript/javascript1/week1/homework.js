@@ -1,6 +1,9 @@
+// freeCodeCamp username: yuejiaoshi
+// freeCodeCamp profile url: https://www.freecodecamp.org/yuejiaoshi
+
 // Age-ify (A future age calculator)
 const yearOfBirth = 1999;
-const yearFuture = 2050;
+const yearFuture = 2027;
 const age = yearFuture - yearOfBirth;
 console.log("You will be " + age + " years old in " + yearFuture);
 
@@ -13,7 +16,7 @@ if (shouldShowResultInDogYears) {
   console.log(
     "Your dog will be " + dogYear * 7 + " dog years old in " + dogYearFuture
   );
-} else if (!shouldShowResultInDogYears) {
+} else {
   console.log(
     "Your dog will be " + dogYear + " human years old in " + dogYearFuture
   );
