@@ -4,30 +4,30 @@
 //*****************************************/
 // Flight booking fullname function
 //*****************************************/
-function getFullname(firstname, surname, useFormalName = false, gender) {
+
+function getFullName(firstName, surName, useFormalName = false, gender) {
+  if (!firstName.trim() || !surName.trim()) {
+    return "Please provide both first name and surname.";
+  }
+
+  const fullName = `${firstName} ${surName}`;
+
   if (!useFormalName) {
-    return firstname + " " + surname;
+    return fullName;
   } else {
     if (gender === "man") {
-      return "Lord" + " " + firstname + " " + surname;
+      return `Lord ${fullName}`;
     } else if (gender === "woman") {
-      return "Lady" + " " + firstname + " " + surname;
+      return `Lady ${fullName}`;
     } else {
-      return (
-        "Please provide gender of " +
-        firstname +
-        " " +
-        surname +
-        " for a formal name," +
-        " 'man' or 'woman'?"
-      );
+      return `Please provide the gender of ${fullName} for a formal name, man or woman?`;
     }
   }
 }
-const fullname1 = getFullname("Benjamin", "Hughes", true, "man");
-const fullname2 = getFullname("Yuejiao", "Shi", true, "woman");
-console.log(fullname1);
-console.log(fullname2);
+const fullName1 = getFullName("Benjamin", "Hughes", true, "man");
+const fullName2 = getFullName("Yuejiao", "Shi", true, "woman");
+console.log(fullName1);
+console.log(fullName2);
 
 //*****************************************/
 // Event application
@@ -78,7 +78,6 @@ console.log(clothesToWear);
 //*****************************************/
 const class07Students = [];
 function addStudentToClass(studentName) {
-  // You write code here
   const lowercaseClass07Students = class07Students.map((name) =>
     name.toLowerCase()
   );
@@ -124,13 +123,13 @@ const candyPrice = {
   "chewing-gum": 0.03,
 };
 const boughtCandyPrices = [];
+const amountToSpend = Math.random() * 100;
 
 function addCandy(candyType, weight) {
   const calculateCandyPrice = candyPrice[candyType.toLowerCase()] * weight;
   boughtCandyPrices.push(calculateCandyPrice);
 }
 
-const amountToSpend = Math.random() * 100;
 function canBuyMoreCandy() {
   let totalCost = 0;
   for (i = 0; i < boughtCandyPrices.length; i++) {
@@ -138,10 +137,8 @@ function canBuyMoreCandy() {
   }
   if (totalCost >= amountToSpend) {
     console.log("Enough candy for you!");
-    return false;
   } else {
     console.log("You can buy more, so please do!");
-    return true;
   }
 }
 addCandy("sweet", 50);
