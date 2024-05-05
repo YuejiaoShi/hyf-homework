@@ -177,7 +177,7 @@ addActivity("24/7-18", "Facebook", 100);
 addActivity("25/7-18", "Gaming", 120);
 console.log(activities);
 
-// ++++ Show my status and Usage limit ++++ 
+// ++++ Show my status and Usage limit ++++
 const timeLimit = 120;
 
 function showStatus(arr) {
@@ -190,13 +190,11 @@ function showStatus(arr) {
       `You have added ${arr.length} activities. They amount to ${totalDuration} min. of usage`
     );
     if (totalDuration >= timeLimit) {
-        console.log(`You have reached your limit, no more smartphoning for you!`);
+      console.log(`You have reached your limit, no more smartphoning for you!`);
     }
   } else {
     console.log(`Add some activities before calling showStatus`);
   }
 }
+
 showStatus(activities);
-
-
-
