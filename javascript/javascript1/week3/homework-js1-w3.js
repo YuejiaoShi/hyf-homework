@@ -114,7 +114,89 @@ logOutSeriesText();
 // NOnoN0nOYes (Note taking app)
 //---------------------------------
 
+// ++++ Save a note ++++
+const notes = [];
+
+function saveNote(content, id) {
+  notes.push({ content: content, id: id });
+}
+
+saveNote("Pick up groceries", 1);
+saveNote("Do laundry", 2);
+console.log(notes); // [{content: 'Pick up groceries', id: 1}, {content: 'Do laundry', id: 2}]
+
+// ++++ Get a note ++++
+function getNote(id) {
+  for (let note of notes) {
+    if (id === note.id) {
+      return note;
+    }
+  }
+}
+
+const firstNote = getNote(1);
+console.log(firstNote); // {content: 'Pick up groceries', id: 1}
+
+// ++++ Log out notes ++++
+function logOutNotesFormatted() {
+  for (let note of notes) {
+    console.log(
+      `The note with id: ${note.id}, has the following note text: ${note.content}`
+    );
+  }
+}
+
+logOutNotesFormatted(); // should log out the text below
+// The note with id: 1, has the following note text: Pick up groceries
+// The note with id: 2, has the following note text: Do laundry
+
+// ++++ Unique feature (Delete a note) ++++
+function deleteNote(num) {
+  for (let i = 0; i < notes.length; i++) {
+    if (num === notes[i].id) {
+      notes.splice(i, 1);
+      console.log(`Note with id: ${num} has been deleted.`);
+    }
+  }
+}
+
+deleteNote(1);
+console.log(notes);
 
 //---------------------------------
 // CactusIO-interactive (Smart phone usage app)
 //---------------------------------
+
+// ++++ Adding an activity ++++
+const activities = [];
+function addActivity(date, activity, duration) {
+  activities.push({ date: date, activity: activity, duration: duration });
+}
+addActivity("23/7-18", "Youtube", 30);
+addActivity("24/7-18", "Facebook", 100);
+addActivity("25/7-18", "Gaming", 120);
+console.log(activities);
+
+// ++++ Show my status and Usage limit ++++ 
+const timeLimit = 120;
+
+function showStatus(arr) {
+  let totalDuration = 0;
+  if (arr.length !== 0) {
+    for (let i = 0; i < arr.length; i++) {
+      totalDuration += arr[i].duration;
+    }
+    console.log(
+      `You have added ${arr.length} activities. They amount to ${totalDuration} min. of usage`
+    );
+    if (totalDuration >= timeLimit) {
+        console.log(`You have reached your limit, no more smartphoning for you!`);
+    }
+  } else {
+    console.log(`Add some activities before calling showStatus`);
+  }
+}
+showStatus(activities);
+
+
+
