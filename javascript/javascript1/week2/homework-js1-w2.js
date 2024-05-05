@@ -21,7 +21,7 @@ function getFullName(firstName, surName, useFormalName = false, isMale) {
   } else {
     if (isMale) {
       return `${preFixMale} ${fullName}`;
-    } else if (!isMale) {
+    } else {
       return `${preFixFemale} ${fullName}`;
     } else {
       return `Please provide the gender of ${fullName} for a formal name, is male or not?`;
