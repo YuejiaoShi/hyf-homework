@@ -5,27 +5,32 @@
 // Flight booking fullname function
 //*****************************************/
 
-function getFullName(firstName, surName, useFormalName = false, gender) {
+function getFullName(firstName, surName, useFormalName = false, isMale) {
+  // Data
+  const preFixMale = "Lord";
+  const preFixFemale = "Lady";
+
+  // Logic
   if (!firstName.trim() || !surName.trim()) {
     return "Please provide both first name and surname.";
   }
 
   const fullName = `${firstName} ${surName}`;
-
   if (!useFormalName) {
     return fullName;
   } else {
-    if (gender === "man") {
-      return `Lord ${fullName}`;
-    } else if (gender === "woman") {
-      return `Lady ${fullName}`;
+    if (isMale) {
+      return `${preFixMale} ${fullName}`;
+    } else if (!isMale) {
+      return `${preFixFemale} ${fullName}`;
     } else {
-      return `Please provide the gender of ${fullName} for a formal name, man or woman?`;
+      return `Please provide the gender of ${fullName} for a formal name, is male or not?`;
     }
   }
 }
-const fullName1 = getFullName("Benjamin", "Hughes", true, "man");
-const fullName2 = getFullName("Yuejiao", "Shi", true, "woman");
+// Rendering
+const fullName1 = getFullName("Benjamin", "Hughes", true, true);
+const fullName2 = getFullName("Yuejiao", "Shi", true, false);
 console.log(fullName1);
 console.log(fullName2);
 
@@ -117,9 +122,9 @@ console.log(getNumberOfStudents());
 // Candy helper optional
 //*****************************************/
 const candyPrice = {
-  "sweet": 0.5,
-  "chocolate": 0.7,
-  "toffee": 1.1,
+  sweet: 0.5,
+  chocolate: 0.7,
+  toffee: 1.1,
   "chewing-gum": 0.03,
 };
 const boughtCandyPrices = [];
