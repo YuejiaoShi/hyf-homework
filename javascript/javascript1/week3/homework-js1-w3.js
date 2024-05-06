@@ -167,8 +167,9 @@ console.log(notes);
 // CactusIO-interactive (Smart phone usage app)
 //---------------------------------
 
-// ++++ Adding an activity ++++
+// ++++ Adding an activity (with optional tasks) ++++
 const activities = [];
+
 function addActivity(date, activity, duration) {
   activities.push({ date: date, activity: activity, duration: duration });
 }
@@ -179,7 +180,6 @@ console.log(activities);
 
 // ++++ Show my status and Usage limit ++++
 const timeLimit = 120;
-
 function showStatus(arr) {
   let totalDuration = 0;
   if (arr.length !== 0) {
@@ -197,4 +197,50 @@ function showStatus(arr) {
   }
 }
 
-showStatus(activities);
+// ++++ Extra feature: List all app usage based on duration in descending order. ++++
+function listAppUsageDescending(arr) {
+  arr.sort((a, b) => b.duration - a.duration);
+  console.log(arr);
+}
+listAppUsageDescending(activities);
+
+// Optional: Lets improve the addActivity, so that we dont need to specify the date, but the function automatically figures out what the date is.
+function addActivityWithoutDate(activity, duration) {
+  const todayIndex = new Date();
+  const today = `${todayIndex.getDate()}/${
+    todayIndex.getMonth() + 1
+  }-${todayIndex.getFullYear()}`;
+  activities.push({ date: today, activity: activity, duration: duration });
+}
+addActivityWithoutDate("Emailing", 20);
+addActivityWithoutDate("Linkedin", 100);
+addActivityWithoutDate("Spotify", 80);
+console.log(activities);
+
+// Optional: Improve the showStatus function by only showing the number of actitivies for that specific day.
+function showStatusAtDate(arr, date) {
+  let totalActivities = 0;
+  if (arr.length !== 0) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].date === date) {
+        totalActivities++;
+      }
+    }
+    console.log(`You have ${totalActivities} activities at ${date}`);
+  } else {
+    console.log(`Add some activities before calling showStatus`);
+  }
+}
+
+showStatusAtDate(activities, "24/7-18");
+
+// Optional: Create a function for calculating the activity a user has spent the most time on.
+function activitySpentMostTime(arr) {
+  const mostTimeActivity = arr.reduce((a, b) =>
+    a.duration > b.duration ? a : b
+  );
+  console.log(
+    `You spent the most time on ${mostTimeActivity.activity}, totally ${mostTimeActivity.duration} min!`
+  );
+}
+activitySpentMostTime(activities);
