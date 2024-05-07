@@ -32,11 +32,15 @@ const travelInformation = {
   destinationDistance: 432,
 };
 
-function time(obj) {
-  const timeInPercentage = obj.destinationDistance / obj.speed;
+function time({ speed, destinationDistance }) {
+  const timeInPercentage = destinationDistance / speed;
   const hour = Math.floor(timeInPercentage);
   const minute = Math.floor((timeInPercentage - hour) * 60);
-  return `${hour} hours and ${minute} minutes`;
+  
+  const hourString = (hour === 1 || hour === 0) ? "hour" : "hours";
+  const minuteString = (minute === 1 || minute === 0) ? "minute" : "minutes";
+
+  return `${hour} ${hourString} and ${minute} ${minuteString}`;
 }
 
 const travelTime = time(travelInformation);
@@ -77,11 +81,9 @@ const dayToMinuteIndex = 24 * 60;
 const hourToMinuteIndex = 60;
 const decimalPlaces = 3;
 
-function calculatePercentage(obj) {
+function calculatePercentage({ days, hours, minutes }) {
   return (
-    ((obj.days * dayToMinuteIndex +
-      obj.hours * hourToMinuteIndex +
-      obj.minutes) /
+    ((days * dayToMinuteIndex + hours * hourToMinuteIndex + minutes) /
       (lifespan * yearToMinuteIndex)) *
     100
   );
@@ -99,7 +101,6 @@ function logOutSeriesText() {
       )}% of my life`
     );
   }
-  console.log();
   console.log(
     `In total that is ${totalPercentage.toFixed(decimalPlaces)}% of my life`
   );
@@ -130,6 +131,8 @@ function getNote(id) {
   for (let note of notes) {
     if (id === note.id) {
       return note;
+    } else {
+      return "Error: Invalid ID";
     }
   }
 }
@@ -171,7 +174,7 @@ console.log(notes);
 const activities = [];
 
 function addActivity(date, activity, duration) {
-  activities.push({ date: date, activity: activity, duration: duration });
+  activities.push({ date, activity, duration }); // Can write a shorthand when the key and the value is the same namespace.
 }
 addActivity("23/7-18", "Youtube", 30);
 addActivity("24/7-18", "Facebook", 100);
