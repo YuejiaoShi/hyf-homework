@@ -22,6 +22,12 @@ for (let i = 0; i < names.length; i++) {
     names.splice(i, 1); // cannot use slice() here because slice doesn't modify the original array
   }
 }
+// // Another solution
+// const index = names.indexOf(nameToRemove);
+// if (index !== -1) {
+//   names.splice(index, 1);
+// }
+
 console.log(names); // ['Peter', 'Yana', 'kristina', 'Rasmus', 'Samuel', 'katrine', 'Tala']
 
 //--------------------------
@@ -36,9 +42,9 @@ function time({ speed, destinationDistance }) {
   const timeInPercentage = destinationDistance / speed;
   const hour = Math.floor(timeInPercentage);
   const minute = Math.floor((timeInPercentage - hour) * 60);
-  
-  const hourString = (hour === 1 || hour === 0) ? "hour" : "hours";
-  const minuteString = (minute === 1 || minute === 0) ? "minute" : "minutes";
+
+  const hourString = hour === 1 || hour === 0 ? "hour" : "hours";
+  const minuteString = minute === 1 || minute === 0 ? "minute" : "minutes";
 
   return `${hour} ${hourString} and ${minute} ${minuteString}`;
 }
