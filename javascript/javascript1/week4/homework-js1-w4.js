@@ -6,7 +6,7 @@
 let userName = "";
 let toDoList = [];
 let currentToDO = "";
-const operators = ["+", "-", "*", "/", "x"];
+const operators = ["+", "-", "*", "/", "x", "add", "plus", "subtract", "multiply", "divide", "divided by"];
 
 function capitalFirstChar(strOrArr) {
   return strOrArr.charAt(0).toUpperCase() + strOrArr.slice(1);
@@ -25,7 +25,7 @@ function addToDo(newToDo) {
 function getReply(command) {
   const commandArr = command.split(" ").map((word) => word.toLowerCase());
   // Name
-  if (command.toLowerCase().includes("hello my name is")) {
+  if (command.toLowerCase().includes("my name is")) {
     if (userName === "") {
       saveName(commandArr);
       return `Nice to meet you ${userName}`;
@@ -39,7 +39,7 @@ function getReply(command) {
   // Todo
   else if (
     commandArr.includes("add") &&
-    command.toLowerCase().includes("to my todo")
+    command.toLowerCase().includes("to my")
   ) {
     const newToDo = commandArr
       .slice(commandArr.indexOf("add") + 1, commandArr.indexOf("to"))
@@ -50,7 +50,7 @@ function getReply(command) {
     } else {
       return `You have already add ${currentToDO} to your todo list`;
     }
-  } else if (command.toLowerCase().includes("what is on my todo")) {
+  } else if (command.toLowerCase().includes("what is on my")) {
     return `You have ${toDoList.length} todos, ${toDoList.join(" and ")}`;
   }
 
@@ -93,17 +93,23 @@ function getReply(command) {
       );
       switch (operator) {
         case "+":
-          return num1 + num2;
+        case "add":
+        case "plus":
+          return `${num1 + num2}`;
         case "-":
-          return num1 - num2;
+        case "subtract":
+          return `${num1 - num2}`;
         case "*":
         case "x":
-          return num1 * num2;
+        case "multiply":
+          return `${num1 * num2}`;
         case "/":
+        case "divide":
+        case "divided by":
           if (num2 === 0) {
             return "You cannot divide a number by zero";
           }
-          return (num1 / num2).toFixed(2);
+          return `${(num1 / num2).toFixed(0)}`;
         default:
           return "Invalid Operator";
       }
@@ -152,7 +158,7 @@ function getReply(command) {
 
   // Define a Word
   else if (command.toLowerCase().includes("define")) {
-    const keyWord = command.substring(7);
+    const keyWord = command.substring(7).toLowerCase();
     const wikiLink = `https://en.wikipedia.org/wiki/${keyWord}`;
     return `The definition of '${keyWord}' can be found here: ${wikiLink}`;
   }
