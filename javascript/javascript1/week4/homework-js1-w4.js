@@ -1,12 +1,27 @@
 // Find Class Exercises solutions in './classExercises';
 // CodeWar Profile : https://www.codewars.com/users/YuejiaoShi
+// Run my Voice Assistant on CodeSandbox: https://codesandbox.io/p/sandbox/hopeful-fermat-hdgkwc?file=%2Fsrc%2Findex.js%3A121%2C53
+
 
 // Voice assistant
 
 let userName = "";
 let toDoList = [];
 let currentToDO = "";
-const operators = ["+", "-", "*", "/", "x", "add", "plus", "subtract", "multiply", "divide", "divided by"];
+const operators = [
+  "+",
+  "-",
+  "*",
+  "/",
+  "x",
+  "add",
+  "plus",
+  "minus",
+  "subtract",
+  "multiply",
+  "divide",
+  "divided by",
+];
 
 function capitalFirstChar(strOrArr) {
   return strOrArr.charAt(0).toUpperCase() + strOrArr.slice(1);
@@ -46,7 +61,7 @@ function getReply(command) {
       .join(" ");
     if (!toDoList.includes(newToDo)) {
       addToDo(newToDo);
-      return `${currentToDO} added to your todo`;
+      return `${currentToDO} added to your todo list`;
     } else {
       return `You have already add ${currentToDO} to your todo list`;
     }
@@ -97,6 +112,7 @@ function getReply(command) {
         case "plus":
           return `${num1 + num2}`;
         case "-":
+        case "minus":
         case "subtract":
           return `${num1 - num2}`;
         case "*":
@@ -158,8 +174,8 @@ function getReply(command) {
 
   // Define a Word
   else if (command.toLowerCase().includes("define")) {
-    const keyWord = command.substring(7).toLowerCase();
-    const wikiLink = `https://en.wikipedia.org/wiki/${keyWord}`;
+    const keyWord = command.substring(7);
+    const wikiLink = `https://en.wikipedia.org/wiki/${keyWord.toLowerCase()}`;
     return `The definition of '${keyWord}' can be found here: ${wikiLink}`;
   }
   return "I'm sorry, I couldn't understand your command.";
