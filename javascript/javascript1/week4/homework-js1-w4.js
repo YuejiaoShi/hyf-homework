@@ -123,7 +123,7 @@ function getReply(command) {
       ) {
         setTimeout(() => {
           console.log("Timer done");
-        }, time * 60 * 1000); // Convert minutes to milliseconds
+        }, time * 60 * 1000);
         return `Timer set for ${time} minutes`;
       } else if (
         command.toLowerCase().includes("second") ||
@@ -132,7 +132,7 @@ function getReply(command) {
       ) {
         setTimeout(() => {
           console.log("Timer done");
-        }, time * 1000); // Convert seconds to milliseconds
+        }, time * 1000);
         return `Timer set for ${time} seconds`;
       } else if (
         command.toLowerCase().includes("hour") ||
@@ -141,7 +141,7 @@ function getReply(command) {
       ) {
         setTimeout(() => {
           console.log("Timer done");
-        }, time * 3600 * 1000); // Convert seconds to milliseconds
+        }, time * 3600 * 1000);
         return `Timer set for ${time} hours`;
       } else {
         return "Sorry, I couldn't recognize the time unit in your command.";
