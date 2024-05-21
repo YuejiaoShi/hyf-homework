@@ -23,21 +23,22 @@ function isValid(arr) {
 
 function getCardInfo(num) {
   const digits = String(num).split("").map(Number);
+  const digitsLen = digits.length;
   if (isValid(digits)) {
     if (
-      digits.length === 15 &&
+      digitsLen === 15 &&
       digits[0] === 3 &&
       (digits[1] === 4 || digits[1] === 7)
     ) {
       return "American Express";
     } else if (
-      digits.length === 16 &&
+      digitsLen === 16 &&
       digits[0] === 5 &&
       [1, 2, 3, 4, 5].includes(digits[1])
     ) {
       return "MasterCard";
     } else if (
-      (digits.length === 13 || digits.length === 16) &&
+      (digitsLen === 13 || digitsLen === 16) &&
       digits[0] === 4
     ) {
       return "Visa";

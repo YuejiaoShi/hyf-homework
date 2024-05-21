@@ -2,7 +2,6 @@
 // CodeWar Profile : https://www.codewars.com/users/YuejiaoShi
 // Run my Voice Assistant on CodeSandbox: https://codesandbox.io/p/sandbox/hopeful-fermat-hdgkwc?file=%2Fsrc%2Findex.js%3A121%2C53
 
-
 // Voice assistant
 
 let userName = "";
