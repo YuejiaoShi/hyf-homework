@@ -1,16 +1,14 @@
 function fizzBuzz(num1, num2) {
   const arrayToPrint = [];
-  let currentNum = 0;
-  for (let i = 0; i < 100; i++) {
-    currentNum = i + 1;
-    if (currentNum % num1 === 0 && currentNum % num2 === 0) {
+  for (let i = 1; i <= 100; i++) {
+    if (i % num1 === 0 && i % num2 === 0) {
       arrayToPrint.push("FizzBuzz");
-    } else if (currentNum % num1 === 0) {
+    } else if (i % num1 === 0) {
       arrayToPrint.push("Fizz");
-    } else if (currentNum % num2 === 0) {
+    } else if (i % num2 === 0) {
       arrayToPrint.push("Buzz");
     } else {
-      arrayToPrint.push(currentNum);
+      arrayToPrint.push(i);
     }
   }
 
@@ -19,4 +17,4 @@ function fizzBuzz(num1, num2) {
   }
 }
 
-fizzBuzz(4, 12);
+fizzBuzz(3, 5);

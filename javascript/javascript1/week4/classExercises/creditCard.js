@@ -13,5 +13,22 @@ function formatCreditCardNumber(num) {
   return objToPrint;
 }
 
+// Another Solution
+// const numberToString = cardNumber.toString();
+// let formatted = numberToString[0];
+
+// for(let i = 1; i < numberToString.length; i += 1) {
+//     if(i % 4 === 0) {
+//         formatted += " " + numberToString[i];
+//     } else {
+//         formatted += numberToString[i];
+//     }
+// }
+
+// return {
+//     original: cardNumber,
+//     formatted,
+// };
+
 const formattedCreditCardObject = formatCreditCardNumber(123456789);
 console.log(formattedCreditCardObject);

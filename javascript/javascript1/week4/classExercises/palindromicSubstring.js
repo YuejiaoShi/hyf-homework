@@ -28,5 +28,5 @@ function longestPalindromicSubstring(str) {
 }
 
 // Example usage:
-console.log(longestPalindromicSubstring("level")); // Output: "bab"
+console.log(longestPalindromicSubstring("level")); // Output: "level"
 console.log(longestPalindromicSubstring("cbbd")); // Output: "bb"

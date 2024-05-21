@@ -1,4 +1,3 @@
-
 function getCharacterFrequencies(str) {
   const strWithoutSpace = str.trim().replace(" ", "");
   const letters = strWithoutSpace.split("");
@@ -6,11 +5,7 @@ function getCharacterFrequencies(str) {
   const objToPrint = { characters: [], length: strWithoutSpace.length };
 
   for (let char of letters) {
-    if (frequencies[char]) {
-      frequencies[char]++;
-    } else {
-      frequencies[char] = 1;
-    }
+    frequencies[char] ? frequencies[char]++ : (frequencies[char] = 1);
   }
 
   for (let char in frequencies) {

@@ -27,14 +27,18 @@ const negative = [
 ];
 
 function getSentimentScore(string) {
-  const strArr = string.split(" ");
+  const strToLower = string.toLowerCase();
   let obj = { score: 0, positiveWords: [], negativeWords: [] };
-  for (let str of strArr) {
-    if (positive.includes(str)) {
-      obj.positiveWords.push(str);
+  for (let i = 0; i < positive.length; i++) {
+    if (strToLower.match(positive[i])) {
+      obj.positiveWords.push(positive[i]);
       obj.score++;
-    } else if (negative.includes(str)) {
-      obj.negativeWords.push(str);
+    }
+  }
+
+  for (let j = 0; j < negative.length; j++) {
+    if (strToLower.match(negative[j])) {
+      obj.negativeWords.push(negative[j]);
       obj.score--;
     }
   }
@@ -43,5 +47,7 @@ function getSentimentScore(string) {
 
 // Or score = obj.positiveWords.length - obj.negativeWords.length
 
-const sentimentScoreObject = getSentimentScore("I am mega super awesome happy");
+const sentimentScoreObject = getSentimentScore(
+  "I am mega super awesome happy, are you dreary?"
+);
 console.log(sentimentScoreObject);
