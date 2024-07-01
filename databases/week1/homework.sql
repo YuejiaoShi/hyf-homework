@@ -16,9 +16,13 @@ SELECT task.title AS not_done_tasks FROM task WHERE status_id != (SELECT id FROM
 SELECT * FROM task ORDER BY created DESC;
 
 -- 6. Get the single most recently created task
-
+SELECT * FROM task ORDER BY created DESC LIMIT 1;
 
 -- 7. Get the title and due date of all tasks where the title or description contains database
+SELECT task.title, task.due_date FROM task WHERE title LIKE '%database%' OR description LIKE '%database%';
+
 -- 8. Get the title and status (as text) of all tasks
+
+
 -- 9. Get the name of each status, along with a count of how many tasks have that status
 -- 10.Get the names of all statuses, sorted by the status with most tasks first
