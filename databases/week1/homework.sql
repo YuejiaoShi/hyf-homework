@@ -22,7 +22,10 @@ SELECT * FROM task ORDER BY created DESC LIMIT 1;
 SELECT task.title, task.due_date FROM task WHERE title LIKE '%database%' OR description LIKE '%database%';
 
 -- 8. Get the title and status (as text) of all tasks
-
+SELECT task.title AS task_title, status.name AS task_status 
+FROM task LEFT JOIN status ON task.status_id = status.id;
 
 -- 9. Get the name of each status, along with a count of how many tasks have that status
+
+
 -- 10.Get the names of all statuses, sorted by the status with most tasks first
