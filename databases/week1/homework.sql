@@ -7,7 +7,7 @@ SELECT COUNT(*) AS tasks_amount FROM task;
 SELECT COUNT(*) AS tasks_with_valid_due_amount FROM task WHERE due_date IS NULL;
 
 -- 3. Find all the tasks that are marked as done
-SELECT task.title AS done_tasks FROM task WHERE status_id = (SELECT id FROM status WHERE name='done'); -- 12 tasks
+SELECT task.title AS done_tasks FROM task JOIN status ON task.status_id = status.id WHERE status.name = 'done';-- 12 tasks
 
 -- 4. Find all the tasks that are not marked as done
 SELECT task.title AS not_done_tasks FROM task WHERE status_id != (SELECT id FROM status WHERE name='done'); -- 23 tasks
