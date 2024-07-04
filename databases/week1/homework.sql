@@ -23,7 +23,7 @@ SELECT task.title, task.due_date FROM task WHERE title LIKE '%database%' OR desc
 
 -- 8. Get the title and status (as text) of all tasks
 SELECT task.title AS task_title, status.name AS task_status 
-FROM task LEFT JOIN status ON task.status_id = status.id;
+FROM task JOIN status ON task.status_id = status.id;
 
 -- 9. Get the name of each status, along with a count of how many tasks have that status
 SELECT status.name AS task_status, Count(*) AS task_amount
