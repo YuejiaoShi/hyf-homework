@@ -1,0 +1,67 @@
+"dbms","TABLE_SCHEMA","TABLE_NAME","COLUMN_NAME","ORDINAL_POSITION","DATA_TYPE","CHARACTER_MAXIMUM_LENGTH","CONSTRAINT_TYPE","REFERENCED_TABLE_SCHEMA","REFERENCED_TABLE_NAME","REFERENCED_COLUMN_NAME"
+"mysql","DB1W1Exercise","product_float","id","1","int",,"PRIMARY KEY",,,
+"mysql","DB1W1Exercise","product_float","name","2","varchar","255",,,,
+"mysql","DB1W1Exercise","product_float","price","3","float",,,,,
+"mysql","DB1W1Exercise","sale","amount","3","decimal",,,,,
+"mysql","DB1W1Exercise","sale","customer_id","6","int",,,,,
+"mysql","DB1W1Exercise","sale","date","2","date",,,,,
+"mysql","DB1W1Exercise","sale","id","1","int",,"PRIMARY KEY",,,
+"mysql","DB1W1Exercise","sale","product_id","5","int",,,,,
+"mysql","DB1W1Exercise","sale","quantity","4","int",,,,,
+"mysql","DB1W1Exercise","status","id","1","int",,"PRIMARY KEY",,,
+"mysql","DB1W1Exercise","status","name","2","varchar","255",,,,
+"mysql","DB1W1Exercise","student_courses","course_id","4","int",,,,,
+"mysql","DB1W1Exercise","student_courses","course_name","5","varchar","255",,,,
+"mysql","DB1W1Exercise","student_courses","grade","7","char","1",,,,
+"mysql","DB1W1Exercise","student_courses","instructor_name","6","varchar","255",,,,
+"mysql","DB1W1Exercise","student_courses","student_address","3","varchar","255",,,,
+"mysql","DB1W1Exercise","student_courses","student_id","1","int",,,,,
+"mysql","DB1W1Exercise","student_courses","student_name","2","varchar","255",,,,
+"mysql","DB1W1Exercise","task","created","4","datetime",,,,,
+"mysql","DB1W1Exercise","task","description","3","text","65535",,,,
+"mysql","DB1W1Exercise","task","due_date","6","datetime",,,,,
+"mysql","DB1W1Exercise","task","id","1","int",,"PRIMARY KEY",,,
+"mysql","DB1W1Exercise","task","status_id","7","int",,"FOREIGN KEY","DB1W1Exercise","status","id"
+"mysql","DB1W1Exercise","task","title","2","varchar","255",,,,
+"mysql","DB1W1Exercise","task","updated","5","datetime",,,,,
+"mysql","DB1W1Exercise","task","user_id","8","int",,"FOREIGN KEY","DB1W1Exercise","user","id"
+"mysql","DB1W1Exercise","user","email","3","varchar","255",,,,
+"mysql","DB1W1Exercise","user","id","1","int",,"PRIMARY KEY",,,
+"mysql","DB1W1Exercise","user","name","2","varchar","255",,,,
+"mysql","DB1W1Exercise","user","phone","4","varchar","255",,,,
+"mysql","DB1W1Exercise","user_task","task_id","2","int",,"FOREIGN KEY","DB1W1Exercise","task","id"
+"mysql","DB1W1Exercise","user_task","user_id","1","int",,"FOREIGN KEY","DB1W1Exercise","user","id"
+"mysql","articles","articles","article_content","3","varchar","500",,,,
+"mysql","articles","articles","article_id","1","int",,"PRIMARY KEY",,,
+"mysql","articles","articles","article_title","2","varchar","255",,,,
+"mysql","articles","articles_authors","article_id","1","int",,"PRIMARY KEY",,,
+"mysql","articles","articles_authors","article_id","1","int",,"FOREIGN KEY","articles","articles","article_id"
+"mysql","articles","articles_authors","author_id","2","int",,"PRIMARY KEY",,,
+"mysql","articles","articles_authors","author_id","2","int",,"FOREIGN KEY","articles","authors","author_id"
+"mysql","articles","articles_tags","article_id","1","int",,"PRIMARY KEY",,,
+"mysql","articles","articles_tags","article_id","1","int",,"FOREIGN KEY","articles","articles","article_id"
+"mysql","articles","articles_tags","tag_id","2","int",,"PRIMARY KEY",,,
+"mysql","articles","articles_tags","tag_id","2","int",,"FOREIGN KEY","articles","tags","tag_id"
+"mysql","articles","authors","author_id","1","int",,"PRIMARY KEY",,,
+"mysql","articles","authors","author_name","2","varchar","255",,,,
+"mysql","articles","tags","tag_id","1","int",,"PRIMARY KEY",,,
+"mysql","articles","tags","tag_name","2","varchar","100",,,,
+"mysql","school","class","course_id","1","int",,"PRIMARY KEY",,,
+"mysql","school","class","course_name","2","varchar","100",,,,
+"mysql","school","class","teacher","3","varchar","100",,,,
+"mysql","school","score","course_id","3","int",,"FOREIGN KEY","school","class","course_id"
+"mysql","school","score","score","4","decimal",,,,,
+"mysql","school","score","score_id","1","int",,"PRIMARY KEY",,,
+"mysql","school","score","student_id","2","int",,"FOREIGN KEY","school","student","student_id"
+"mysql","school","student","email","3","varchar","100","UNIQUE",,,
+"mysql","school","student","name","2","varchar","100",,,,
+"mysql","school","student","phone","4","varchar","15",,,,
+"mysql","school","student","student_id","1","int",,"PRIMARY KEY",,,
+"mysql","school","student_course","course_id","2","int",,"PRIMARY KEY",,,
+"mysql","school","student_course","course_id","2","int",,"FOREIGN KEY","school","class","course_id"
+"mysql","school","student_course","student_id","1","int",,"PRIMARY KEY",,,
+"mysql","school","student_course","student_id","1","int",,"FOREIGN KEY","school","student","student_id"
+"mysql","sys","sys_config","set_by","4","varchar","128",,,,
+"mysql","sys","sys_config","set_time","3","timestamp",,,,,
+"mysql","sys","sys_config","value","2","varchar","128",,,,
+"mysql","sys","sys_config","variable","1","varchar","128","PRIMARY KEY",,,
