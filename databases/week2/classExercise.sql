@@ -24,22 +24,23 @@ GROUP BY user.name
 -- ********************************************************************
 -- Data from: https://github.com/HackYourFuture-CPH/databases/blob/main/lesson2/articles_example.json
 CREATE DATABASE articles;
+SET NAMES utf8mb4;
 
 CREATE TABLE authors (
     author_id INT PRIMARY KEY,
     author_name VARCHAR(255) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE articles (
     article_id INT PRIMARY KEY,
     article_title VARCHAR(255) NOT NULL,
     article_content VARCHAR(500) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE tags (
     tag_id INT PRIMARY KEY AUTO_INCREMENT,
     tag_name VARCHAR(100) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE articles_authors (
     article_id INT NOT NULL,
@@ -47,7 +48,7 @@ CREATE TABLE articles_authors (
     PRIMARY KEY (article_id, author_id),
 		FOREIGN KEY (article_id) REFERENCES articles(article_id),
     FOREIGN KEY (author_id) REFERENCES authors(author_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE articles_tags (
     article_id INT NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE articles_tags (
     PRIMARY KEY (article_id, tag_id),
 		FOREIGN KEY (article_id) REFERENCES articles(article_id),
     FOREIGN KEY (tag_id) REFERENCES tags(tag_id)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 INSERT INTO articles (article_id, article_title, article_content) VALUES
