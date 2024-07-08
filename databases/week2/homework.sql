@@ -76,3 +76,4 @@ SELECT month(task.created), Count(*) AS task_count FROM task GROUP BY month(task
 -- *******************************************************
 -- *************** Part 4: IKEA database ***************
 -- *******************************************************
+-- See file "homework-Part2"
