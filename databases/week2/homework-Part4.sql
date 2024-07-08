@@ -1,4 +1,4 @@
--- Active: 1719748709143@@127.0.0.1@3306@IKEA
+-- See ER Diagram in file "IKEA_ER_Diagram.png";
 CREATE DATABASE IKEA;
 SET NAMES utf8mb4;
 CREATE TABLE customer (
@@ -157,3 +157,4 @@ VALUES
     (2, 5, 6), (2, 6, 12), (2, 7, 20), (2, 8, 25),
     (2, 9, 20), (2, 10, 30), (2, 11, 10), (2, 12, 22);
 
+-- See ER Diagram in file "IKEA_ER_Diagram.png";

@@ -58,6 +58,7 @@ CREATE TABLE articles_tags (
     FOREIGN KEY (tag_id) REFERENCES tags(tag_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- See ER Diagram in file "articles_ER_Diagram.png";
 
 INSERT INTO articles (article_id, article_title, article_content) VALUES
 (1, 'BREAKING NEWS: Water is wet!', 'Scientists have discovered that water is wet, it\'s amazing what.... ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
@@ -91,3 +92,5 @@ INSERT INTO articles_tags (article_id, tag_id) VALUES
 (2, (SELECT tag_id FROM tags WHERE tag_name = 'winter')),
 (3, (SELECT tag_id FROM tags WHERE tag_name = 'clickbait')),
 (3, (SELECT tag_id FROM tags WHERE tag_name = 'breaking'));
+
+-- See ER Diagram in file "articles_ER_Diagram.png";
