@@ -22,12 +22,14 @@ DELETE FROM task WHERE task.id = LAST_INSERT_ID();
 -- *************** Part 2: School database ***************
 -- *******************************************************
 CREATE DATABASE school;
+SET NAMES utf8mb4;
+
 CREATE TABLE class (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     begins DATE NOT NULL,
     ends DATE NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE student (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -35,9 +37,14 @@ CREATE TABLE student (
     phone VARCHAR(20) NOT NULL UNIQUE,
     class_id INT NOT NULL,
     FOREIGN KEY (class_id) REFERENCES class(id) 
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE INDEX idx_student_name ON student(name);
 
 ALTER TABLE class ADD COLUMN status ENUM('not-started', 'ongoing', 'finished') NOT NULL;
 
+-- *******************************************************
+-- ***************** Part 3: More queries ****************
+-- *******************************************************
+CREATE DATABASE hyf_lesson2;
+SET NAMES utf8mb4;
