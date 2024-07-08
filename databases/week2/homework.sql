@@ -17,3 +17,27 @@ UPDATE task SET status_id = (SELECT id FROM status WHERE status.name ='In progre
 UPDATE task SET status_id = (SELECT id FROM status WHERE status.name ='Done')  WHERE task.id = LAST_INSERT_ID();
 -- 1.6 Delete a task
 DELETE FROM task WHERE task.id = LAST_INSERT_ID();
+
+-- *******************************************************
+-- *************** Part 2: School database ***************
+-- *******************************************************
+CREATE DATABASE school;
+CREATE TABLE class (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    begins DATE NOT NULL,
+    ends DATE NOT NULL
+);
+CREATE TABLE student (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL UNIQUE,
+    class_id INT NOT NULL,
+    FOREIGN KEY (class_id) REFERENCES class(id) 
+);
+
+CREATE INDEX idx_student_name ON student(name);
+
+ALTER TABLE class ADD COLUMN status ENUM('not-started', 'ongoing', 'finished') NOT NULL;
+
