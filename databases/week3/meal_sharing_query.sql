@@ -27,7 +27,7 @@ CREATE TABLE Reservation (
     contact_phonenumber VARCHAR(255),
     contact_name VARCHAR(255),
     contact_email VARCHAR(255) UNIQUE,
-    FOREIGN KEY (meal_id) REFERENCES Meal(id)
+    FOREIGN KEY (meal_id) REFERENCES Meal(id) ON DELETE SET NULL
 );
 
 
@@ -38,16 +38,16 @@ CREATE TABLE Review (
     meal_id INT,
     stars INT,
     created_date DATE,
-    FOREIGN KEY (meal_id) REFERENCES Meal(id)
+    FOREIGN KEY (meal_id) REFERENCES Meal(id) ON DELETE SET NULL
 );
 
 -- insert examples
 INSERT INTO Meal (title, description, location, `when`, max_reservations, price, created_date)
 VALUES ('Italian Dinner', 'Delicious Italian cuisine', 'Restaurant A', '2024-06-20 19:00:00', 20, 50.00, '2024-06-18'),
-       ('Mexican Fiesta', 'Authentic Mexican dishes', 'Restaurant B', '2024-06-25 18:30:00', 15, 40.00, '2024-06-18'),
+       ('Mexican Fiesta', 'Authentic Mexican dishes', 'Mexican Night', '2024-06-25 18:30:00', 15, 40.00, '2024-06-18'),
        ('Family Brunch', 'Weekend brunch menu', 'Cafe C', '2024-06-21 11:00:00', 30, 25.00, '2024-06-18'),
        ('French Cuisine Night', 'Exquisite French dishes', 'Bistro D', '2024-06-23 20:00:00', 25, 65.00, '2024-06-18'),
-       ('Sushi Extravaganza', 'Fresh sushi and sashimi', 'Restaurant E', '2024-06-27 19:30:00', 18, 55.00, '2024-06-18'),
+       ('Sushi Extravaganza', 'Fresh sushi and sashimi', 'Tokyo Sushi', '2024-06-27 19:30:00', 18, 55.00, '2024-06-18'),
        ('BBQ Feast', 'All-you-can-eat BBQ', 'Park F', '2024-06-28 17:00:00', 40, 30.00, '2024-06-18');
 
 INSERT INTO Reservation (number_of_guests, meal_id, created_date, contact_phonenumber, contact_name, contact_email)
@@ -77,5 +77,8 @@ SELECT * FROM `Meal`;
 INSERT INTO Meal (title, description, location, `when`, max_reservations, price, created_date)
 VALUES ('Lasagna', 'Homemade lasagna with garlic bread', 'Italian Kitchen', '2024-07-05 19:00:00', 25, 40.00, '2024-07-01');
 -- 3. Get a meal with any id, fx 1
-SELECT * FROM Meal WHERE id = 3;
-
+SELECT * FROM Meal WHERE id = 5;
+-- 4. Update a meal with any id, fx 1. Update any attribute fx the title or multiple attributes
+UPDATE `Meal` SET title = 'Classic Sushi', price = 52.5 WHERE id = 5;
+-- 5. Delete a meal with any id, fx 1
+DELETE FROM `Meal` WHERE id = 6;
