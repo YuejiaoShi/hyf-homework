@@ -121,3 +121,8 @@ SELECT Meal.title AS meal_title, Reservation.* FROM Reservation
 JOIN Meal ON Reservation.meal_id = Meal.id WHERE Meal.title LIKE '%Italian%' 
 ORDER BY Reservation.created_date;
 -- 8. Sort all meals by average number of stars in the reviews
+SELECT COALESCE(ROUND(AVG(Review.stars), 2), NULL) AS avg_stars, Meal.title
+FROM Meal LEFT JOIN Review ON Meal.id = Review.meal_id
+GROUP BY Meal.id, Meal.title
+ORDER BY avg_stars DESC;
+
