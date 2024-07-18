@@ -110,12 +110,14 @@ WHERE Reserved.total_guests < Meal.max_reservations OR Reserved.total_guests IS 
 SELECT * FROM Meal WHERE title LIKE '%Sushi%';
 -- 4. Get meals that has been created between two dates
 SELECT * FROM Meal WHERE created_date BETWEEN '2024-06-20' AND '2024-06-25';
--- 5. Get only specific number of meals fx return only 3 meals
-SELECT * FROM Meal LIMIT 3;
+-- 5. Get only specific number of meals fx return only 5 meals
+SELECT * FROM Meal LIMIT 5;
 -- 6. Get the meals that have good reviews
 SELECT Meal.title, ROUND(AVG(Review.stars), 2) AS avg_stars FROM Meal
 JOIN Review ON Meal.id = Review.meal_id
 GROUP BY meal_id HAVING avg_stars >= 4;
 -- 7. Get reservations for a specific meal sorted by created_date
-
+SELECT Meal.title AS meal_title, Reservation.* FROM Reservation 
+JOIN Meal ON Reservation.meal_id = Meal.id WHERE Meal.title LIKE '%Italian%' 
+ORDER BY Reservation.created_date;
 -- 8. Sort all meals by average number of stars in the reviews
