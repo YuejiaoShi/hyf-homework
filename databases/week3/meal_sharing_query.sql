@@ -70,7 +70,7 @@ VALUES ('Fantastic BBQ Experience', 'Great selection and flavors!', 3, 4, '2024-
 -- Queries ---------------------------------
 --------------------------------------------
 
--- **** Meal ****************
+-- **** Meal Queries ***************
 -- 1. Get all meals
 SELECT * FROM `Meal`;
 -- 2. Add a new meal
@@ -82,3 +82,16 @@ SELECT * FROM Meal WHERE id = 5;
 UPDATE `Meal` SET title = 'Classic Sushi', price = 52.5 WHERE id = 5;
 -- 5. Delete a meal with any id, fx 1
 DELETE FROM `Meal` WHERE id = 6;
+
+-- **** Review Queries *************
+-- 1. Get all reviews
+SELECT * FROM `Review`;
+-- 2. Add a new review
+INSERT INTO Review (title, description, meal_id, stars, created_date)
+VALUES ('Nice Sushi', 'The sushi was fresh with excellent service.', 1, 5, '2024-07-18');
+-- 3. Get a review with any id, fx 1
+SELECT * FROM `Review` WHERE id = 2;
+-- 4. Update a review with any id, fx 1. Update any attribute fx the title or multiple attributes
+UPDATE Review SET description = 'The sauce was a little bit sour.', stars = 4 WHERE id = 4;
+-- 5. Delete a review with any id, fx 1
+DELETE FROM `Review` WHERE id = 6;
