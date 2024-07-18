@@ -95,3 +95,26 @@ SELECT * FROM `Review` WHERE id = 2;
 UPDATE Review SET description = 'The sauce was a little bit sour.', stars = 4 WHERE id = 4;
 -- 5. Delete a review with any id, fx 1
 DELETE FROM `Review` WHERE id = 6;
+
+-- **** Additional Queries *************
+-- 1. Get meals that has a price smaller than a specific price fx 50
+SELECT * FROM `Meal` WHERE price < 50;
+-- 2. Get meals that still has available reservations
+SELECT Meal.title, Meal.location, Reserved.total_guests, Meal.max_reservations
+FROM Meal LEFT JOIN (
+    SELECT meal_id, COALESCE(SUM(number_of_guests), 0) AS total_guests
+    FROM Reservation GROUP BY meal_id
+) AS Reserved ON Meal.id = Reserved.meal_id
+WHERE Reserved.total_guests < Meal.max_reservations OR Reserved.total_guests IS NULL;
+-- 3. Get meals that partially match a title. Rød grød med will match the meal with the title Rød grød med fløde
+SELECT * FROM Meal WHERE title LIKE '%Sushi%';
+-- 4. Get meals that has been created between two dates
+SELECT * FROM Meal WHERE created_date BETWEEN '2024-06-20' AND '2024-06-25';
+-- 5. Get only specific number of meals fx return only 3 meals
+SELECT * FROM Meal LIMIT 3;
+-- 6. Get the meals that have good reviews
+SELECT Meal.title, ROUND(AVG(Review.stars), 2) AS avg_stars FROM Meal
+JOIN Review ON Meal.id = Review.meal_id
+GROUP BY meal_id HAVING avg_stars >= 4;
+-- 7. Get reservations for a specific meal sorted by created_date
+-- 8. Sort all meals by average number of stars in the reviews
