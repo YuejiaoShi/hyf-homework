@@ -43,12 +43,12 @@ CREATE TABLE Review (
 
 -- insert examples
 INSERT INTO Meal (title, description, location, `when`, max_reservations, price, created_date)
-VALUES ('Italian Dinner', 'Delicious Italian cuisine', 'Restaurant A', '2024-06-20 19:00:00', 20, 50.00, '2024-06-18'),
-       ('Mexican Fiesta', 'Authentic Mexican dishes', 'Mexican Night', '2024-06-25 18:30:00', 15, 40.00, '2024-06-18'),
+VALUES ('Italian Dinner', 'Delicious Italian cuisine', 'Restaurant A', '2024-06-20 19:00:00', 20, 50.00, '2024-06-10'),
+       ('Mexican Fiesta', 'Authentic Mexican dishes', 'Mexican Night', '2024-06-25 18:30:00', 15, 40.00, '2024-06-23'),
        ('Family Brunch', 'Weekend brunch menu', 'Cafe C', '2024-06-21 11:00:00', 30, 25.00, '2024-06-18'),
-       ('French Cuisine Night', 'Exquisite French dishes', 'Bistro D', '2024-06-23 20:00:00', 25, 65.00, '2024-06-18'),
-       ('Sushi Extravaganza', 'Fresh sushi and sashimi', 'Tokyo Sushi', '2024-06-27 19:30:00', 18, 55.00, '2024-06-18'),
-       ('BBQ Feast', 'All-you-can-eat BBQ', 'Park F', '2024-06-28 17:00:00', 40, 30.00, '2024-06-18');
+       ('French Cuisine Night', 'Exquisite French dishes', 'Bistro D', '2024-06-23 20:00:00', 25, 65.00, '2024-06-22'),
+       ('Sushi Extravaganza', 'Fresh sushi and sashimi', 'Tokyo Sushi', '2024-06-27 19:30:00', 18, 55.00, '2024-06-27'),
+       ('BBQ Feast', 'All-you-can-eat BBQ', 'Park F', '2024-06-28 17:00:00', 40, 30.00, '2024-06-30');
 
 INSERT INTO Reservation (number_of_guests, meal_id, created_date, contact_phonenumber, contact_name, contact_email)
 VALUES (2, 1, '2024-07-18', '123-456-7890', 'John Doe', 'john.doe@gmail.com'),
@@ -117,4 +117,5 @@ SELECT Meal.title, ROUND(AVG(Review.stars), 2) AS avg_stars FROM Meal
 JOIN Review ON Meal.id = Review.meal_id
 GROUP BY meal_id HAVING avg_stars >= 4;
 -- 7. Get reservations for a specific meal sorted by created_date
+
 -- 8. Sort all meals by average number of stars in the reviews
