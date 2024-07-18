@@ -30,7 +30,6 @@ CREATE TABLE Reservation (
     FOREIGN KEY (meal_id) REFERENCES Meal(id) ON DELETE SET NULL
 );
 
-
 CREATE TABLE Review (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255),
