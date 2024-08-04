@@ -1,4 +1,9 @@
 {
+  "name": "warm-up",
+  "version": "1.0.0",
+  "description": "exercise",
+  "main": "avg.js",
+  "type": "module",
   "dependencies": {
     "yargs": "^17.7.2"
   }
