@@ -87,7 +87,7 @@ app.post("/search", async (req, res) => {
       );
       return res.json(filteredDocs);
     } else {
-      return res.status(400).send("Invalid request body");
+      return res.status(400).send("Invalid request body/parameter");
     }
 
     console.log(fields);
