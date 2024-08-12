@@ -4,13 +4,13 @@ import { readFile } from "fs/promises";
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Support parsing JSON requests
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("This is a search engine");
 });
 
+// GET /search
 app.get("/search", async (req, res) => {
   const { q } = req.query;
 
@@ -36,6 +36,7 @@ app.get("/search", async (req, res) => {
   }
 });
 
+// GET /documents/:id
 app.get("/documents/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id)) {
@@ -57,6 +58,17 @@ app.get("/documents/:id", async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
+  }
+});
+
+// POST /search
+app.post("/documents/:id", async (req, res) => {
+  const { q } = req.query;
+  const { fields } = req.body;
+  if (q && fields) {
+    return res
+      .status(400)
+      .send("Cannot use both query parameter and request body.");
   }
 });
 
