@@ -62,7 +62,7 @@ app.get("/documents/:id", async (req, res) => {
 });
 
 // POST /search
-app.post("/documents/:id", async (req, res) => {
+app.post("/search", async (req, res) => {
   const { q } = req.query;
   const { fields } = req.body;
   if (q && fields) {
