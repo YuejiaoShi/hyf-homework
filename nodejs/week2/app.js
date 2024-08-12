@@ -65,6 +65,7 @@ app.get("/documents/:id", async (req, res) => {
 app.post("/search", async (req, res) => {
   const { q } = req.query;
   const { fields } = req.body;
+
   if (q && fields) {
     return res
       .status(400)
@@ -76,10 +77,10 @@ app.post("/search", async (req, res) => {
     const documents = JSON.parse(contents);
 
     if (fields) {
-      const filteredDocs = documents.filter(
-        (doc) =>
-          doc[key] !== undefined &&
-          Object.keys(fields).every((key) => fields[key] === doc[key])
+      const filteredDocs = documents.filter((doc) =>
+        Object.keys(fields).every(
+          (key) => doc[key] !== undefined && fields[key] === doc[key]
+        )
       );
       return res.json(filteredDocs);
     } else if (q) {
