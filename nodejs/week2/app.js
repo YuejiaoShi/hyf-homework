@@ -70,6 +70,23 @@ app.post("/search", async (req, res) => {
       .status(400)
       .send("Cannot use both query parameter and request body.");
   }
+  try {
+    const filePath = new URL("./documents.json", import.meta.url);
+    const contents = await readFile(filePath, { encoding: "utf8" });
+    const documents = JSON.parse(contents);
+
+    if (fields) {
+      //
+    } else if (q) {
+      //
+    } else {
+      return res.status(400).send("Invalid request body");
+    }
+
+    console.log(fields);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 app.listen(port, () => {
