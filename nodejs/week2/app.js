@@ -76,8 +76,10 @@ app.post("/search", async (req, res) => {
     const documents = JSON.parse(contents);
 
     if (fields) {
-      const filteredDocs = documents.filter((doc) =>
-        Object.keys(fields).every((key) => fields[key] === doc[key])
+      const filteredDocs = documents.filter(
+        (doc) =>
+          doc[key] !== undefined &&
+          Object.keys(fields).every((key) => fields[key] === doc[key])
       );
       return res.json(filteredDocs);
     } else if (q) {
