@@ -49,7 +49,11 @@ app.get("/documents/:id", async (req, res) => {
       return res.status(400).send("Invalid Id");
     }
     const filteredDoc = documents.filter((doc) => doc.id === id);
-    return res.json(filteredDoc);
+    if (filteredDoc.length > 0) {
+      return res.json(filteredDoc[0]);
+    } else {
+      return res.status(404).send("Document Not Found");
+    }
   } catch (err) {
     console.error(err.message);
   }
