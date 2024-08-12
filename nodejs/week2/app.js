@@ -13,17 +13,26 @@ app.get("/", (req, res) => {
 
 app.get("/search", async (req, res) => {
   const { q } = req.query;
-  if (!q) {
-    try {
-      const filePath = new URL("./documents.json", import.meta.url);
-      const contents = await readFile(filePath, { encoding: "utf8" });
-      const documents = JSON.parse(contents);
-      console.log(documents);
 
+  try {
+    const filePath = new URL("./documents.json", import.meta.url);
+    const contents = await readFile(filePath, { encoding: "utf8" });
+    const documents = JSON.parse(contents);
+
+    if (!q) {
       return res.json(documents);
-    } catch (err) {
-      console.error(err.message);
+    } else {
+      const filteredDocs = documents.filter((doc) =>
+        Object.values(doc).some(
+          (value) =>
+            value !== undefined &&
+            value.toString().toLowerCase().includes(q.toLowerCase())
+        )
+      );
+      return res.json(filteredDocs);
     }
+  } catch (err) {
+    console.error(err.message);
   }
 });
 
