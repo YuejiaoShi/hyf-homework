@@ -48,9 +48,10 @@ app.get("/documents/:id", async (req, res) => {
     if (isNaN(id)) {
       return res.status(400).send("Invalid Id");
     }
-    const filteredDoc = documents.filter((doc) => doc.id === id);
-    if (filteredDoc.length > 0) {
-      return res.json(filteredDoc[0]);
+    const filteredDoc = documents.find((doc) => doc.id === id);
+
+    if (filteredDoc) {
+      return res.json(filteredDoc);
     } else {
       return res.status(404).send("Document Not Found");
     }
