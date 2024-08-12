@@ -78,7 +78,14 @@ app.post("/search", async (req, res) => {
     if (fields) {
       //
     } else if (q) {
-      //
+      const filteredDocs = documents.filter((doc) =>
+        Object.values(doc).some(
+          (value) =>
+            value !== undefined &&
+            value.toString().toLowerCase().includes(q.toLowerCase())
+        )
+      );
+      return res.json(filteredDocs);
     } else {
       return res.status(400).send("Invalid request body");
     }
