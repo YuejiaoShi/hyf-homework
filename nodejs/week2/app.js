@@ -46,9 +46,7 @@ app.get("/documents/:id", async (req, res) => {
     const filePath = new URL("./documents.json", import.meta.url);
     const contents = await readFile(filePath, { encoding: "utf8" });
     const documents = JSON.parse(contents);
-    if (isNaN(id)) {
-      return res.status(400).send("Invalid Id");
-    }
+  
     const filteredDoc = documents.find((doc) => doc.id === id);
 
     if (filteredDoc) {
