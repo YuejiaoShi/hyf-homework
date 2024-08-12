@@ -36,6 +36,25 @@ app.get("/search", async (req, res) => {
   }
 });
 
+app.get("/documents/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).send("Invalid Id");
+  }
+  try {
+    const filePath = new URL("./documents.json", import.meta.url);
+    const contents = await readFile(filePath, { encoding: "utf8" });
+    const documents = JSON.parse(contents);
+    if (isNaN(id)) {
+      return res.status(400).send("Invalid Id");
+    }
+    const filteredDoc = documents.filter((doc) => doc.id === id);
+    return res.json(filteredDoc);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
