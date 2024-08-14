@@ -45,7 +45,7 @@ app.get("/search", async (req, res) => {
     if (!q) {
       return res.json(documents);
     } else {
-      const filteredDocs = filterDocsByQuery();
+      const filteredDocs = filterDocsByQuery(documents, q);
       return res.json(filteredDocs);
     }
   } catch (err) {
@@ -88,10 +88,10 @@ app.post("/search", async (req, res) => {
     const documents = await loadDocuments();
 
     if (fields) {
-      const filteredDocs = filterDocsByFields();
+      const filteredDocs = filterDocsByFields(documents, fields);
       return res.json(filteredDocs);
     } else if (q) {
-      const filteredDocs = filterDocsByQuery();
+      const filteredDocs = filterDocsByQuery(documents, q);
       return res.json(filteredDocs);
     } else {
       return res.status(400).send("Invalid request body/parameter");
