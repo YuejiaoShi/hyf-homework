@@ -27,7 +27,13 @@ const filterDocsByQuery = (documents, query) => {
   );
 };
 
-const filterDocsByFields = (documents, query) => {};
+const filterDocsByFields = (documents, fields) => {
+  return documents.filter((doc) =>
+    Object.keys(fields).every(
+      (key) => doc[key] !== undefined && fields[key] === doc[key]
+    )
+  );
+};
 
 // GET /search
 app.get("/search", async (req, res) => {
@@ -82,11 +88,7 @@ app.post("/search", async (req, res) => {
     const documents = await loadDocuments();
 
     if (fields) {
-      const filteredDocs = documents.filter((doc) =>
-        Object.keys(fields).every(
-          (key) => doc[key] !== undefined && fields[key] === doc[key]
-        )
-      );
+      const filteredDocs = filterDocsByFields();
       return res.json(filteredDocs);
     } else if (q) {
       const filteredDocs = filterDocsByQuery();
