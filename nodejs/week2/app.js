@@ -27,6 +27,8 @@ const filterDocsByQuery = (documents, query) => {
   );
 };
 
+const filterDocsByFields = (documents, query) => {};
+
 // GET /search
 app.get("/search", async (req, res) => {
   const { q } = req.query;
@@ -77,9 +79,7 @@ app.post("/search", async (req, res) => {
       .send("Cannot use both query parameter and request body.");
   }
   try {
-    const filePath = new URL("./documents.json", import.meta.url);
-    const contents = await readFile(filePath, { encoding: "utf8" });
-    const documents = JSON.parse(contents);
+    const documents = await loadDocuments();
 
     if (fields) {
       const filteredDocs = documents.filter((doc) =>
