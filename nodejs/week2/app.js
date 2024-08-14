@@ -96,8 +96,6 @@ app.post("/search", async (req, res) => {
     } else {
       return res.status(400).send("Invalid request body/parameter");
     }
-
-    console.log(fields);
   } catch (err) {
     console.error(err.message);
   }
