@@ -10,14 +10,19 @@ app.get("/", (req, res) => {
   res.send("This is a search engine");
 });
 
+// utility functions
+const loadDocuments = async () => {
+  const filePath = new URL("./documents.json", import.meta.url);
+  const contents = await readFile(filePath, { encoding: "utf8" });
+  return JSON.parse(contents);
+};
+
 // GET /search
 app.get("/search", async (req, res) => {
   const { q } = req.query;
 
   try {
-    const filePath = new URL("./documents.json", import.meta.url);
-    const contents = await readFile(filePath, { encoding: "utf8" });
-    const documents = JSON.parse(contents);
+    const documents = await loadDocuments();
 
     if (!q) {
       return res.json(documents);
@@ -43,10 +48,8 @@ app.get("/documents/:id", async (req, res) => {
     return res.status(400).send("Invalid Id");
   }
   try {
-    const filePath = new URL("./documents.json", import.meta.url);
-    const contents = await readFile(filePath, { encoding: "utf8" });
-    const documents = JSON.parse(contents);
-  
+    const documents = await loadDocuments();
+
     const filteredDoc = documents.find((doc) => doc.id === id);
 
     if (filteredDoc) {
