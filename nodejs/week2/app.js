@@ -10,11 +10,21 @@ app.get("/", (req, res) => {
   res.send("This is a search engine");
 });
 
-// utility functions
+// three reusable utility functions
 const loadDocuments = async () => {
   const filePath = new URL("./documents.json", import.meta.url);
   const contents = await readFile(filePath, { encoding: "utf8" });
   return JSON.parse(contents);
+};
+
+const filterDocsByQuery = (documents, query) => {
+  return documents.filter((doc) =>
+    Object.values(doc).some(
+      (value) =>
+        value !== undefined &&
+        value.toString().toLowerCase().includes(query.toLowerCase())
+    )
+  );
 };
 
 // GET /search
@@ -27,13 +37,7 @@ app.get("/search", async (req, res) => {
     if (!q) {
       return res.json(documents);
     } else {
-      const filteredDocs = documents.filter((doc) =>
-        Object.values(doc).some(
-          (value) =>
-            value !== undefined &&
-            value.toString().toLowerCase().includes(q.toLowerCase())
-        )
-      );
+      const filteredDocs = filterDocsByQuery();
       return res.json(filteredDocs);
     }
   } catch (err) {
@@ -85,13 +89,7 @@ app.post("/search", async (req, res) => {
       );
       return res.json(filteredDocs);
     } else if (q) {
-      const filteredDocs = documents.filter((doc) =>
-        Object.values(doc).some(
-          (value) =>
-            value !== undefined &&
-            value.toString().toLowerCase().includes(q.toLowerCase())
-        )
-      );
+      const filteredDocs = filterDocsByQuery();
       return res.json(filteredDocs);
     } else {
       return res.status(400).send("Invalid request body/parameter");
