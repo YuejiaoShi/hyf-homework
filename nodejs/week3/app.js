@@ -31,8 +31,14 @@ contactsAPIRouter.get("/", async (req, res) => {
     const sortValue = sortParams[0];
     const sortOrder = sortParams[1];
 
+    const validSortValues = ["id", "first_name", "last_name", "email", "phone"];
+    const validSortOrders = ["ASC", "DESC"];
+
     console.log(sortParams);
-    if (sortParams.length > 0) {
+    if (
+      validSortValues.includes(sortValue) &&
+      validSortOrders.includes(sortOrder.toUpperCase())
+    ) {
       query = query.orderBy(sortValue, sortOrder);
     }
   }
