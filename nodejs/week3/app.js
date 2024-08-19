@@ -23,7 +23,7 @@ app.use("/api", apiRouter);
 const contactsAPIRouter = express.Router();
 apiRouter.use("/contacts", contactsAPIRouter);
 
-// // Version that is vulnerable to SQL injection
+// // ------ Version that is vulnerable to SQL injection ------
 // contactsAPIRouter.get("/", async (req, res) => {
 //   let query = knexInstance.select("*").from("contacts");
 
@@ -44,8 +44,9 @@ apiRouter.use("/contacts", contactsAPIRouter);
 //     res.status(500).json({ error: "Internal server error" });
 //   }
 // });
+// // -------------------------------------------------------------
 
-// Version that is protected against SQL injection
+// ------- Version that is protected against SQL injection --------
 contactsAPIRouter.get("/", async (req, res) => {
   let query = knexInstance.select("*").from("contacts");
 
@@ -79,6 +80,7 @@ contactsAPIRouter.get("/", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+// -------------------------------------------------------------
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
