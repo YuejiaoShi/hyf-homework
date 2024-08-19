@@ -23,6 +23,29 @@ app.use("/api", apiRouter);
 const contactsAPIRouter = express.Router();
 apiRouter.use("/contacts", contactsAPIRouter);
 
+// // Version that is vulnerable to SQL injection
+// contactsAPIRouter.get("/", async (req, res) => {
+//   let query = knexInstance.select("*").from("contacts");
+
+//   if ("sort" in req.query) {
+//     const orderBy = req.query.sort.toString();
+//     if (orderBy.length > 0) {
+//       query = query.orderByRaw(orderBy);
+//     }
+//   }
+
+//   console.log("SQL", query.toSQL().sql);
+
+//   try {
+//     const data = await query;
+//     res.json({ data });
+//   } catch (e) {
+//     console.error(e);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
+
+// Version that is protected against SQL injection
 contactsAPIRouter.get("/", async (req, res) => {
   let query = knexInstance.select("*").from("contacts");
 
@@ -46,7 +69,6 @@ contactsAPIRouter.get("/", async (req, res) => {
       Valid_Sort_Orders: validSortOrders,
     });
   }
-
   console.log("SQL", query.toSQL().sql);
 
   try {
