@@ -34,13 +34,17 @@ contactsAPIRouter.get("/", async (req, res) => {
     const validSortValues = ["id", "first_name", "last_name", "email", "phone"];
     const validSortOrders = ["ASC", "DESC"];
 
-    console.log(sortParams);
     if (
       validSortValues.includes(sortValue) &&
       validSortOrders.includes(sortOrder.toUpperCase())
     ) {
       query = query.orderBy(sortValue, sortOrder);
     }
+    return res.status(400).json({
+      error: "Invalid sort parameters",
+      Valid_Sort_Values: validSortValues,
+      Valid_Sort_Orders: validSortOrders,
+    });
   }
 
   console.log("SQL", query.toSQL().sql);
