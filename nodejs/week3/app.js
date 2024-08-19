@@ -27,9 +27,13 @@ contactsAPIRouter.get("/", async (req, res) => {
   let query = knexInstance.select("*").from("contacts");
 
   if ("sort" in req.query) {
-    const orderBy = req.query.sort.toString();
-    if (orderBy.length > 0) {
-      query = query.orderByRaw(orderBy);
+    const sortParams = req.query.sort.toString().split(" ");
+    const sortValue = sortParams[0];
+    const sortOrder = sortParams[1];
+
+    console.log(sortParams);
+    if (sortParams.length > 0) {
+      query = query.orderBy(sortValue, sortOrder);
     }
   }
 
