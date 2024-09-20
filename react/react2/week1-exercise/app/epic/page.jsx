@@ -47,16 +47,18 @@ function EPIC() {
         Enter a date (YYYY-MM-DD) in the URL to fetch an EPIC image. Example:
         /epic?date=2019-05-30
       </p>
-      <button onClick={handleNavigate}>View EPIC Image for 2019-05-30</button>
+      <button className="bg-blue-200 p-2 rounded-full" onClick={handleNavigate}>
+        Click to View EPIC Image for 2019-05-30
+      </button>
       {error && <p>{error}</p>}
       {epicImage ? (
         <>
           <img src={epicImage} alt={`NASA EPIC image for ${date}`} />
           <figcaption>EPIC image for {date}</figcaption>
         </>
-      ) : (
+      ) : date ? (
         <p>Loading image...</p>
-      )}
+      ) : null}
     </div>
   );
 }
