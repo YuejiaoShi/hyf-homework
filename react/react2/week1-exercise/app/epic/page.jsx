@@ -39,7 +39,10 @@ function EPIC() {
     <div>
       {error && <p>{error}</p>}
       {epicImage ? (
-        <img src={epicImage} alt="NASA EPIC" />
+        <>
+          <img src={epicImage} alt={`NASA EPIC image for ${date}`} />
+          <figcaption>EPIC image for {date}</figcaption>
+        </>
       ) : (
         <p>Loading image...</p>
       )}
