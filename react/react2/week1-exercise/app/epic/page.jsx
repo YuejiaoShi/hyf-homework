@@ -1,3 +1,4 @@
+"use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -18,7 +19,14 @@ function EPIC() {
           `https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${API_KEY}`
         );
         const data = await response.json();
-        setEpicImage(data);
+        if (data.length > 0) {
+          const imageUrl = `https://api.nasa.gov/EPIC/archive/natural/${data[0].date
+            .split(" ")[0]
+            .replace(/-/g, "/")}/png/${data[0].image}.png?api_key=${API_KEY}`;
+          setEpicImage(imageUrl);
+        } else {
+          setError("No images found for this date.");
+        }
       } catch (err) {
         setError("Failed to fetch image: " + err.message);
       }
