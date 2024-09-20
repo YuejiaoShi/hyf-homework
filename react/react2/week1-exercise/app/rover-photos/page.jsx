@@ -42,7 +42,7 @@ function RoverPhotos() {
       {error ? (
         <p>Error: {error}</p>
       ) : roverPhoto?.photos?.length ? (
-        <div>
+        <div className="flex flex-wrap justify-center gap-4">
           {roverPhoto.photos.map((photo) => (
             <RoverPhoto
               key={photo.id}
