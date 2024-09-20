@@ -7,6 +7,8 @@ export default function Home() {
       <Link href="/astronomy-picture">Navigate to Astronomy Picture</Link>
       <br></br>
       <Link href="/rover-photos">Navigate to Rover Photos</Link>
+      <br />
+      <Link href="/blogs">Navigate to Blogs</Link>
     </div>
   );
 }
