@@ -1,5 +1,3 @@
-import Image from "next/image";
-import AstronomyPicture from "./astronomy-picture/page";
 import Link from "next/link";
 
 export default function Home() {
