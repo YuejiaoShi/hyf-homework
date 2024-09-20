@@ -1,5 +1,13 @@
+"use client";
+import { usePathname } from "next/navigation";
+
 function Blogs() {
-  return <div>Blogs Page</div>;
+  const pathname = usePathname();
+  return (
+    <div>
+      <p>Current pathname: {pathname}</p>
+    </div>
+  );
 }
 
 export default Blogs;
