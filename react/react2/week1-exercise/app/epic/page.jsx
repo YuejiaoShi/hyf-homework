@@ -1,5 +1,5 @@
 "use client";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const API_KEY = "jZ3XQ22AOCq4X1D1Qz2XWfE4I82l1C6uZETbQWn8";
@@ -9,6 +9,8 @@ function EPIC() {
   const [error, setError] = useState("");
   const query = useSearchParams();
   const date = query.get("date");
+
+  const router = useRouter();
 
   useEffect(() => {
     if (!date) return;
@@ -35,8 +37,17 @@ function EPIC() {
     fetchEPICImage();
   }, [date]);
 
+  const handleNavigate = () => {
+    router.push("/epic?date=2021-01-01");
+  };
+
   return (
     <div>
+      <p>
+        Enter a date (YYYY-MM-DD) in the URL to fetch an EPIC image. Example:
+        /epic?date=2019-05-30
+      </p>
+      <button onClick={handleNavigate}>View EPIC Image for 2019-05-30</button>
       {error && <p>{error}</p>}
       {epicImage ? (
         <>
