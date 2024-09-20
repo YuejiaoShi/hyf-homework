@@ -9,6 +9,8 @@ export default function Home() {
       <Link href="/rover-photos">Navigate to Rover Photos</Link>
       <br />
       <Link href="/blogs">Navigate to Blogs</Link>
+      <br />
+      <Link href="/epic">Navigate to EPIC image</Link>
     </div>
   );
 }
