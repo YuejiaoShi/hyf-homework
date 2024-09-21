@@ -38,26 +38,35 @@ function EPIC() {
   }, [date]);
 
   const handleNavigate = () => {
-    router.push("/epic?date=2021-01-01");
+    router.push("/epic?date=2019-05-30");
   };
 
   return (
-    <div>
-      <p>
+    <div className="max-w-2xl mx-auto p-4 bg-white shadow-md rounded-lg">
+      <p className="mb-4 text-gray-700">
         Enter a date (YYYY-MM-DD) in the URL to fetch an EPIC image. Example:
-        /epic?date=2019-05-30
+        <code className="font-mono text-blue-600"> /epic?date=2019-05-30</code>
       </p>
-      <button className="bg-blue-200 p-2 rounded-full" onClick={handleNavigate}>
+      <button
+        className="bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition duration-200"
+        onClick={handleNavigate}
+      >
         Click to View EPIC Image for 2019-05-30
       </button>
-      {error && <p>{error}</p>}
+      {error && <p className="text-red-500 mt-2">{error}</p>}
       {epicImage ? (
-        <>
-          <img src={epicImage} alt={`NASA EPIC image for ${date}`} />
-          <figcaption>EPIC image for {date}</figcaption>
-        </>
+        <div className="flex flex-col items-center justify-center">
+          <img
+            src={epicImage}
+            alt={`NASA EPIC image for ${date}`}
+            className="w-4/5 rounded-lg shadow-lg mt-4"
+          />
+          <figcaption className="mt-2 text-center text-gray-600">
+            EPIC image for {date}
+          </figcaption>
+        </div>
       ) : date ? (
-        <p>Loading image...</p>
+        <p className="mt-4 text-gray-600">Loading image...</p>
       ) : null}
     </div>
   );

@@ -8,8 +8,8 @@ function BlogCard() {
 
   return (
     <div>
-      <h1>Blog: {slug}</h1>
-      <p>Current Pathname: {pathname}</p>
+      <p className="mb-4 italic">Current Pathname: {pathname}</p>
+      <p className="mb-4 text-xl">Blog: {slug}</p>
     </div>
   );
 }
