@@ -1,16 +1,10 @@
 import Link from "next/link";
+import SignUpForm from "./components/SignUpForm";
 
 export default function Home() {
   return (
-    <div className="container">
-      <p className="text-center text-3xl">Home Page</p>
-      <Link href="/astronomy-picture">Navigate to Astronomy Picture</Link>
-      <br></br>
-      <Link href="/rover-photos">Navigate to Rover Photos</Link>
-      <br />
-      <Link href="/blogs">Navigate to Blogs</Link>
-      <br />
-      <Link href="/epic">Navigate to EPIC image</Link>
-    </div>
+    <>
+      <SignUpForm />
+    </>
   );
 }
