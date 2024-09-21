@@ -10,7 +10,7 @@ function Blogs() {
         Try changing the URL to something like{" "}
         <code className="bg-gray-200 rounded border">
           /blogs/your-blog-name
-        </code>{" "}
+        </code>
         to see if you can find any blogs!
       </p>
     </div>
