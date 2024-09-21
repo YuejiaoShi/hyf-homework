@@ -23,6 +23,22 @@ function SignUpForm() {
     }
 
     console.log(formData);
+    for (let key in refs) {
+      refs[key].current.value = "";
+    }
+
+    firstNameRef.current.focus();
+  };
+
+  const handleFocusNext = (e, nextRef) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (nextRef && nextRef.current) {
+        nextRef.current.focus();
+      } else {
+        handleSubmit(e);
+      }
+    }
   };
 
   return (
@@ -36,6 +52,7 @@ function SignUpForm() {
           variant="outlined"
           fullWidth
           margin="normal"
+          onKeyDown={(e) => handleFocusNext(e, lastNameRef)}
         />
         <TextField
           inputRef={lastNameRef}
@@ -45,6 +62,7 @@ function SignUpForm() {
           variant="outlined"
           fullWidth
           margin="normal"
+          onKeyDown={(e) => handleFocusNext(e, emailRef)}
         />
         <TextField
           inputRef={emailRef}
@@ -55,6 +73,7 @@ function SignUpForm() {
           variant="outlined"
           fullWidth
           margin="normal"
+          onKeyDown={(e) => handleFocusNext(e, phoneNumberRef)}
         />
         <TextField
           inputRef={phoneNumberRef}
@@ -65,6 +84,7 @@ function SignUpForm() {
           variant="outlined"
           fullWidth
           margin="normal"
+          onKeyDown={(e) => handleFocusNext(e, null)}
         />
       </div>
       <Button
