@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
+import Link from "next/link";
 
 function NavBar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -44,13 +45,15 @@ function NavBar() {
 
   return (
     <AppBar position="static">
-      <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="logo">
-          <img src="/favicon.ico" alt="logo" width="30" height="30" />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          React2Week1
-        </Typography>
+      <Toolbar className="flex justify-between items-center">
+        <Link href="/" passHref className="flex items-center space-x-2">
+          <IconButton color="inherit" aria-label="logo">
+            <img src="/favicon.ico" alt="logo" className="w-8 h-8" />
+          </IconButton>
+          <Typography variant="h6" className="text-white">
+            React2Week1
+          </Typography>
+        </Link>
         {isMobile ? (
           <>
             <IconButton color="inherit" onClick={toggleDrawer}>
