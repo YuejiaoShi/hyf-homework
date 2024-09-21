@@ -21,11 +21,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <NavBar />
-        {children}
+        <main className="flex items-center justify-center mt-10">
+          {children}
+        </main>
       </body>
     </html>
   );

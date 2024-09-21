@@ -147,8 +147,7 @@ function SignUpForm() {
         onClick={handleSubmit}
         type="submit"
         variant="contained"
-        color="primary"
-        className="mt-4"
+        className="mt-4 bg-indigo-900"
       >
         Sign Up
       </Button>
