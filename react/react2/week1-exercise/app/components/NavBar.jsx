@@ -40,6 +40,9 @@ function NavBar() {
       <ListItem>
         <ListItemButton href="/epic">EPIC image</ListItemButton>
       </ListItem>
+      <ListItem>
+        <ListItemButton href="/sign-up">Sign Up</ListItemButton>
+      </ListItem>
     </List>
   );
 
@@ -76,6 +79,9 @@ function NavBar() {
             </Button>
             <Button color="inherit" href="/epic">
               EPIC image
+            </Button>
+            <Button color="inherit" href="/sign-up">
+              Sign Up
             </Button>
           </Stack>
         )}

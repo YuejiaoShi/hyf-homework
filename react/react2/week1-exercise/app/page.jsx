@@ -1,10 +1,8 @@
-import Link from "next/link";
-import SignUpForm from "./components/SignUpForm";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center">
-      <SignUpForm />
+    <div>
+      <p>Welcome to the Home Page of React2Week1 homework;)</p>
     </div>
   );
 }
