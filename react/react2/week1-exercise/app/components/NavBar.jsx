@@ -15,30 +15,48 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function NavBar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const isMobile = useMediaQuery("(max-width:600px)");
+  const pathname = usePathname();
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
 
+  const getButtonClasses = (path) => {
+    return pathname === path ? "font-bold text-base" : "";
+  };
+
   const drawer = (
     <List>
       <ListItem>
-        <ListItemButton href="/astronomy-picture">
+        <ListItemButton
+          href="/astronomy-picture"
+          className={getButtonClasses("/astronomy-picture")}
+        >
           Astronomy Picture
         </ListItemButton>
       </ListItem>
       <ListItem>
-        <ListItemButton href="/rover-photos">Rover Photos</ListItemButton>
+        <ListItemButton
+          href="/rover-photos"
+          className={getButtonClasses("/rover-photos")}
+        >
+          Rover Photos
+        </ListItemButton>
       </ListItem>
       <ListItem>
-        <ListItemButton href="/blogs">Blogs</ListItemButton>
+        <ListItemButton href="/blogs" className={getButtonClasses("/blogs")}>
+          Blogs
+        </ListItemButton>
       </ListItem>
       <ListItem>
-        <ListItemButton href="/epic">EPIC image</ListItemButton>
+        <ListItemButton href="/epic" className={getButtonClasses("/epic")}>
+          EPIC image
+        </ListItemButton>
       </ListItem>
       <ListItem>
         <ListItemButton href="/sign-up">Sign Up</ListItemButton>
@@ -47,7 +65,7 @@ function NavBar() {
   );
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" className="bg-indigo-900">
       <Toolbar className="flex justify-between items-center">
         <Link href="/" passHref className="flex items-center space-x-2">
           <IconButton color="inherit" aria-label="logo">
@@ -68,16 +86,32 @@ function NavBar() {
           </>
         ) : (
           <Stack direction="row" spacing={2}>
-            <Button color="inherit" href="/astronomy-picture">
+            <Button
+              color="inherit"
+              href="/astronomy-picture"
+              className={getButtonClasses("/astronomy-picture")}
+            >
               Astronomy Picture
             </Button>
-            <Button color="inherit" href="/rover-photos">
+            <Button
+              color="inherit"
+              href="/rover-photos"
+              className={getButtonClasses("/rover-photos")}
+            >
               Rover Photos
             </Button>
-            <Button color="inherit" href="/blogs">
+            <Button
+              color="inherit"
+              href="/blogs"
+              className={getButtonClasses("/blogs")}
+            >
               Blogs
             </Button>
-            <Button color="inherit" href="/epic">
+            <Button
+              color="inherit"
+              href="/epic"
+              className={getButtonClasses("/epic")}
+            >
               EPIC image
             </Button>
             <Button color="inherit" href="/sign-up">
