@@ -1,5 +1,6 @@
 "use client";
 import { TextField, Button } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
 function SignUpForm() {
@@ -7,6 +8,7 @@ function SignUpForm() {
   const lastNameRef = useRef(null);
   const emailRef = useRef(null);
   const phoneNumberRef = useRef(null);
+  const router = useRouter();
 
   const refs = {
     firstName: firstNameRef,
@@ -23,11 +25,7 @@ function SignUpForm() {
     }
 
     console.log(formData);
-    for (let key in refs) {
-      refs[key].current.value = "";
-    }
-
-    firstNameRef.current.focus();
+    router.push("/");
   };
 
   const handleFocusNext = (e, nextRef) => {
