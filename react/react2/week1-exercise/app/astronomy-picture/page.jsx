@@ -1,4 +1,4 @@
-const API_KEY = "jZ3XQ22AOCq4X1D1Qz2XWfE4I82l1C6uZETbQWn8";
+const API_KEY = process.env.API_KEY;
 
 async function AstronomyPicture() {
   const astronomyPictureURL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;

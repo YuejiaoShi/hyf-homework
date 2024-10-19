@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const API_KEY = "jZ3XQ22AOCq4X1D1Qz2XWfE4I82l1C6uZETbQWn8";
+const API_KEY = process.env.API_KEY;
 
 function EPIC() {
   const [epicImage, setEpicImage] = useState(null);
