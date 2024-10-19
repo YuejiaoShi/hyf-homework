@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const API_KEY = process.env.API_KEY;
 
 function RoverPhotos() {
   const [roverPhoto, setRoverPhoto] = useState({});
@@ -11,7 +10,7 @@ function RoverPhotos() {
     const fetchRoverPhotos = async () => {
       try {
         const response = await fetch(
-          `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${API_KEY}`
+          `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=${process.env.NEXT_PUBLIC_API_KEY}`
         );
         const data = await response.json();
         setRoverPhoto(data);

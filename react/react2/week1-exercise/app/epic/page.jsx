@@ -2,8 +2,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const API_KEY = process.env.API_KEY;
-
 function EPIC() {
   const [epicImage, setEpicImage] = useState(null);
   const [error, setError] = useState("");
@@ -18,13 +16,15 @@ function EPIC() {
     const fetchEPICImage = async () => {
       try {
         const response = await fetch(
-          `https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${API_KEY}`
+          `https://api.nasa.gov/EPIC/api/natural/date/${date}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`
         );
         const data = await response.json();
         if (data.length > 0) {
           const imageUrl = `https://api.nasa.gov/EPIC/archive/natural/${data[0].date
             .split(" ")[0]
-            .replace(/-/g, "/")}/png/${data[0].image}.png?api_key=${API_KEY}`;
+            .replace(/-/g, "/")}/png/${data[0].image}.png?api_key=${
+            process.env.NEXT_PUBLIC_API_KEY
+          }`;
           setEpicImage(imageUrl);
         } else {
           setError("No images found for this date.");

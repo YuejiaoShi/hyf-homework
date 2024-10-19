@@ -1,7 +1,5 @@
-const API_KEY = process.env.API_KEY;
-
 async function AstronomyPicture() {
-  const astronomyPictureURL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
+  const astronomyPictureURL = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
   const response = await fetch(astronomyPictureURL);
   if (!response.ok) {
     throw new Error(
