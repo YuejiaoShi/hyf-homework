@@ -23,45 +23,50 @@ function NavBar() {
   const pathname = usePathname();
 
   const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
+    setDrawerOpen((prev) => !prev);
   };
 
   const getButtonClasses = (path) => {
     return pathname === path ? "font-bold text-base" : "";
   };
 
-  const drawer = (
+  const navItems = [
+    { label: "Astronomy Picture", path: "/astronomy-picture" },
+    { label: "Rover Photos", path: "/rover-photos" },
+    { label: "Blogs", path: "/blogs" },
+    { label: "EPIC image", path: "/epic" },
+    { label: "Sign Up", path: "/sign-up" },
+  ];
+
+  const renderDrawerItems = () => (
     <List>
-      <ListItem>
-        <ListItemButton
-          href="/astronomy-picture"
-          className={getButtonClasses("/astronomy-picture")}
-        >
-          Astronomy Picture
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton
-          href="/rover-photos"
-          className={getButtonClasses("/rover-photos")}
-        >
-          Rover Photos
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton href="/blogs" className={getButtonClasses("/blogs")}>
-          Blogs
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton href="/epic" className={getButtonClasses("/epic")}>
-          EPIC image
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton href="/sign-up">Sign Up</ListItemButton>
-      </ListItem>
+      {navItems.map(({ label, path }) => (
+        <ListItem key={path}>
+          <ListItemButton
+            component={Link}
+            href={path}
+            className={getButtonClasses(path)}
+          >
+            {label}
+          </ListItemButton>
+        </ListItem>
+      ))}
     </List>
+  );
+
+  const renderDesktopItems = () => (
+    <Stack direction="row" spacing={2}>
+      {navItems.map(({ label, path }) => (
+        <Button
+          key={path}
+          color="inherit"
+          href={path}
+          className={getButtonClasses(path)}
+        >
+          {label}
+        </Button>
+      ))}
+    </Stack>
   );
 
   return (
@@ -81,43 +86,11 @@ function NavBar() {
               <MenuIcon />
             </IconButton>
             <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer}>
-              {drawer}
+              {renderDrawerItems()}
             </Drawer>
           </>
         ) : (
-          <Stack direction="row" spacing={2}>
-            <Button
-              color="inherit"
-              href="/astronomy-picture"
-              className={getButtonClasses("/astronomy-picture")}
-            >
-              Astronomy Picture
-            </Button>
-            <Button
-              color="inherit"
-              href="/rover-photos"
-              className={getButtonClasses("/rover-photos")}
-            >
-              Rover Photos
-            </Button>
-            <Button
-              color="inherit"
-              href="/blogs"
-              className={getButtonClasses("/blogs")}
-            >
-              Blogs
-            </Button>
-            <Button
-              color="inherit"
-              href="/epic"
-              className={getButtonClasses("/epic")}
-            >
-              EPIC image
-            </Button>
-            <Button color="inherit" href="/sign-up">
-              Sign Up
-            </Button>
-          </Stack>
+          renderDesktopItems()
         )}
       </Toolbar>
     </AppBar>
